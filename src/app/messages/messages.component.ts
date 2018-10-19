@@ -21,7 +21,8 @@ export class MessagesComponent {
 }
 
 export function eventBusMessageHandler(error, message): void {
-  this.eventbusMessageReceived = JSON.stringify(message);
+    // this line does not actually work, even though it compiles
+    this.eventbusMessageReceived = JSON.stringify(message);
   console.log('Received a message from the Vert.x event bus: ' + this.eventbusMessageReceived );
 }
 

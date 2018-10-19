@@ -35,10 +35,12 @@ export class EventbusclientService {
 
       self.eventBus.onopen = function() {
           console.log('onopen function started');
+          /*
           self.eventBus.registerHandler('multicast', function(error, message) {
               console.log('received a message: ' + JSON.stringify(message));
           });
-          // this.eventBus.registerHandler('multicast', eventBusMessageHandler);
+          */
+          self.eventBus.registerHandler('multicast', eventBusMessageHandler);
       };
       this.eventBus.enableReconnect(true);
   }
