@@ -8,8 +8,6 @@ import { HEROES } from './mock-heroes';
 
 import { Observable, of } from 'rxjs';
 
-import { MessageService } from './message.service';
-
 // Injectable is a decorator, which is similar to an annotation but not the same thing
 // this registers this service with the root injector
 @Injectable({
@@ -19,7 +17,7 @@ export class HeroService {
 
   // constructor() { }
 
-  constructor(private messageService: MessageService) {}
+  constructor() {}
 
   // getHeroes is a synchronous method which returns an array of Hero objects
   /*
@@ -30,7 +28,6 @@ export class HeroService {
 
   // this is an asynchronous method
   getHeroes(): Observable<Hero[]> {
-    this.messageService.add('HeroService: fetched heroes');
     return of(HEROES);
   }
 }
