@@ -1,11 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // this is to import the class Hero
 import { Hero } from '../hero';
 // this is to import the constant HEROES
 // import { HEROES } from '../mock-heroes';
 
 import { HeroService } from '../hero.service';
-import {EventbusclientService} from '../eventbusclient.service';
 
 @Component({
   selector: 'app-heroes',
@@ -13,7 +12,7 @@ import {EventbusclientService} from '../eventbusclient.service';
   styleUrls: ['./heroes.component.css']
 })
 // this is a class declaration
-export class HeroesComponent implements OnInit, OnDestroy {
+export class HeroesComponent implements OnInit {
   // hero = 'Windstorm';
 
   /*
@@ -39,14 +38,12 @@ export class HeroesComponent implements OnInit, OnDestroy {
   // this is a click event handler method
   // it returns nothing
   onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.eventbusclientService.sendMessage();
+      this.selectedHero = hero;
   }
 
   // constructor() { }
 
-  constructor(private heroService: HeroService,
-    public eventbusclientService: EventbusclientService) { }
+  constructor(private heroService: HeroService) { }
   /*
   getHeroes(): void {
     this.heroes = this.heroService.getHeroes();
@@ -60,13 +57,8 @@ export class HeroesComponent implements OnInit, OnDestroy {
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
   }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.getHeroes();
-        this.eventbusclientService.setUpEventBusClient();
-    }
-
-    ngOnDestroy(): void {
-        this.eventbusclientService.closeEventBusClient();
     }
 }
 

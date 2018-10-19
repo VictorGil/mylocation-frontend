@@ -1,7 +1,6 @@
-import {Component} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {MessageService} from '../message.service';
-import {OnDestroy, OnInit} from '@angular/core';
-// import {EventbusclientService} from '../eventbusclient.service';
+import {EventbusclientService} from '../eventbusclient.service';
 
 @Component({
     selector: 'app-messages',
@@ -9,20 +8,22 @@ import {OnDestroy, OnInit} from '@angular/core';
     styleUrls: ['./messages.component.css']
 })
 
-export class MessagesComponent {
+export class MessagesComponent implements OnInit, OnDestroy {
     eventbusMessageReceived: String = 'no message yet';
 
     // it needs to be public because Angular only binds to public component properties.
-    constructor(public messageService: MessageService) {
-            // public eventbusclientService: EventbusclientService) {
-        console.log('constructor method of the MessagesComponent');
+    constructor(public messageService: MessageService,
+            public eventbusclientService: EventbusclientService) {
+        console.log('Constructor method of the MessagesComponent');
     }
 
-}
+    ngOnInit(): void {
+        this.eventbusclientService.setUpEventBusClient();
+        this.eventbusclientService.observableMessage.subscribe(message => this.eventbusMessageReceived = message);
+    }
 
-export function eventBusMessageHandler(error, message): void {
-    // this line does not actually work, even though it compiles
-    this.eventbusMessageReceived = JSON.stringify(message);
-  console.log('Received a message from the Vert.x event bus: ' + this.eventbusMessageReceived );
+    ngOnDestroy(): void {
+        this.eventbusclientService.closeEventBusClient();
+    }
 }
 
