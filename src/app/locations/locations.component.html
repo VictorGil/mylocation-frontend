@@ -2,7 +2,7 @@
 <ul class="locations">
                                   <!-- click event binding -->
   <li *ngFor="let location of locations" (click)="onSelect(location)">
-    <!--span class="badge">{{hero.id}}</span--> {{location.timeMeasuredString}}
+    <span class="badge">{{location.timeMeasuredString}}</span>
   </li>
 </ul>
 

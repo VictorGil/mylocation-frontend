@@ -4,19 +4,19 @@
     color: white;
   }
   .locations {
-    margin: 0 0 2em 0;
+    margin: 0 0 1em 0;
     list-style-type: none;
     padding: 0;
-    width: 15em;
+    width: 11em;
   }
   .locations li {
     cursor: pointer;
     position: relative;
     left: 0;
     background-color: #EEE;
-    margin: .5em;
-    padding: .3em 0;
-    height: 1.6em;
+    margin: .1em;
+    padding: .1em;
+    height: 2em;
     border-radius: 4px;
   }
   .locations li.selected:hover {
@@ -33,17 +33,16 @@
     top: -3px;
   }
   .locations .badge {
-    display: inline-block;
+    display: block;
     font-size: small;
     color: white;
-    padding: 0.8em 0.7em 0 0.7em;
+    padding: 0.1em 0.1em 0.1em 0.1em;
     background-color: #607D8B;
     line-height: 1em;
     position: relative;
     left: -1px;
-    top: -4px;
+    top: -1px;
     height: 1.8em;
-    margin-right: .8em;
     border-radius: 4px 0 0 4px;
   }
   
