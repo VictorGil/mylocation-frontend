@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {EventbusclientService} from '../eventbusclient.service';
+import { LocationData } from '../locationdata';
 
 @Component({
     selector: 'app-messages',
@@ -17,7 +18,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.eventbusclientService.setUpEventBusClient();
-        this.eventbusclientService.observableMessage.subscribe(message => this.eventbusMessageReceived = message);
+        this.eventbusclientService.observableMessage.subscribe(locationData => this.eventbusMessageReceived = locationData.latitude);
     }
 
     ngOnDestroy(): void {

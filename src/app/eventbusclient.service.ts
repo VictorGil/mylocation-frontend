@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as EventBus from 'vertx3-eventbus-client';
 import { Observable, Observer } from 'rxjs';
+import { LocationData } from './locationdata';
 
 @Injectable({
     providedIn: 'root'
@@ -8,9 +9,9 @@ import { Observable, Observer } from 'rxjs';
 
 export class EventbusclientService {
     private readonly eventBus: EventBus;
-    private readonly url: String;
-    public observableMessage: Observable<String>;
-    private messageObserver: Observer<String>;
+    private readonly url: string;
+    public readonly observableMessage: Observable<LocationData>;
+    private messageObserver: Observer<LocationData>;
 
     constructor() {
         console.log('Starting EventbusclientService constructor method');
@@ -29,7 +30,7 @@ export class EventbusclientService {
 
         // we need the "self" constant because we cannot use "this" inside the function below
         const self = this;
-        this.observableMessage = Observable.create(function(observer: Observer<String>) {
+        this.observableMessage = Observable.create(function(observer: Observer<LocationData>) {
                 self.messageObserver = observer;
                 });
     }
@@ -42,12 +43,18 @@ export class EventbusclientService {
         this.eventBus.onopen = function() {
                 console.log('onopen function started');
                 self.eventBus.registerHandler('multicast', function(error, message) {
-                        const messageString: String = JSON.stringify(message);
-                        console.log('Received a message: ' + messageString);
-                        self.messageObserver.next(messageString);
-                        });
+                        console.log('Received a message: ' + message);
+                        console.log('Type of "error" variable: ' + typeof(error)); // object
+                        console.log('Type of "message" variable: ' + typeof(message)); // object
+                        console.log('Type of "message.body" variable: ' + typeof(message.body)); // string
 
-                };
+                        const messageBody: string = message.body as string;
+                        const locationData: LocationData = JSON.parse(messageBody) as LocationData;
+
+                        self.messageObserver.next(locationData);
+                });
+
+         };
 
         this.eventBus.enableReconnect(true);
     }
