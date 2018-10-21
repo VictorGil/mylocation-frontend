@@ -1,4 +1,4 @@
-import { LocationDataJson } from './locationdatajson';
+import { LocationDataJson } from './locationDataJson';
 
 export class LocationData {
     readonly latitude: string;

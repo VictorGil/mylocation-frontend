@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import * as EventBus from 'vertx3-eventbus-client';
 import { Observable, Observer } from 'rxjs';
 import { LocationData } from './locationData';
-import { LocationDataJson } from './locationdatajson';
+import { LocationDataJson } from './locationDataJson';
 
 @Injectable({
     providedIn: 'root'
