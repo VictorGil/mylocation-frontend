@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { EventbusclientService } from './eventbusclient.service';
+import { EventbusclientService } from './eventBusClient.service';
 
 describe('EventbusclientService', () => {
   beforeEach(() => {

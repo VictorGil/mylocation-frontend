@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {EventbusclientService} from '../eventbusclient.service';
+import {EventbusclientService} from '../eventBusClient.service';
 import { LocationData } from '../locationData';
 
 @Component({
@@ -7,7 +7,6 @@ import { LocationData } from '../locationData';
     templateUrl: './messages.component.html',
     styleUrls: ['./messages.component.css']
 })
-
 export class MessagesComponent implements OnInit, OnDestroy {
     eventbusMessageReceived: String = 'no message yet';
 
