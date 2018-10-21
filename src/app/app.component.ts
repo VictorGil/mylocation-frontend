@@ -10,5 +10,5 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   // this is a property inside the AppComponent class
-  title = 'Tour of Heroes';
+  title = 'My location';
 }
