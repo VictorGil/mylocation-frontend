@@ -9,6 +9,5 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  // this is a property inside the AppComponent class
   title = 'My location';
 }
