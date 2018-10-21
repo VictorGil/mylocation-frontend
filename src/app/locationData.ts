@@ -11,7 +11,7 @@ export class LocationData {
     readonly timeChecked: number;
     readonly timeCheckedString: string;
     readonly timeMeasured: number;
-    readonly timeMesasuredString: string;
+    readonly timeMeasuredString: string;
 
     constructor(locationDataJson: LocationDataJson) {
         this.latitude = locationDataJson.latitude;
@@ -29,7 +29,7 @@ export class LocationData {
         this.timeMeasured = locationDataJson.timeMeasured;
         const timeMeasuredDate: Date = new Date(0);
         timeMeasuredDate.setUTCSeconds(this.timeMeasured);
-        this.timeMesasuredString = timeMeasuredDate.toString();
+        this.timeMeasuredString = timeMeasuredDate.toString();
     }
 }
 
