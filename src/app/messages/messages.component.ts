@@ -8,21 +8,22 @@ import { LocationData } from '../locationData';
     styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit, OnDestroy {
-    eventbusMessageReceived: String = 'no message yet';
+    readonly eventBusClientService: EventBusClientService;
+    eventBusMessageReceived: String = 'no message yet';
 
     // it needs to be public because Angular only binds to public component properties.
-    constructor(public eventbusclientService: EventBusClientService) {
-        console.log('Constructor method of the MessagesComponent');
+    constructor(eventBusClientService: EventBusClientService) {
+        this.eventBusClientService = eventBusClientService;
     }
 
     ngOnInit(): void {
-        this.eventbusclientService.setUpEventBusClient();
-        this.eventbusclientService.observableMessage.subscribe(locationData => this.eventbusMessageReceived =
+        this.eventBusClientService.setUpEventBusClient();
+        this.eventBusClientService.observableLocationData.subscribe(locationData => this.eventBusMessageReceived =
                 locationData.timeMesasuredString);
     }
 
     ngOnDestroy(): void {
-        this.eventbusclientService.closeEventBusClient();
+        this.eventBusClientService.closeEventBusClient();
     }
 }
 

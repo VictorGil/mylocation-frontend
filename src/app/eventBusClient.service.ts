@@ -11,8 +11,8 @@ import { LocationDataJson } from './locationDataJson';
 export class EventBusClientService {
     private readonly eventBus: EventBus;
     private readonly url: string;
-    public readonly observableMessage: Observable<LocationData>;
-    private messageObserver: Observer<LocationData>;
+    public readonly observableLocationData: Observable<LocationData>;
+    private locationDataObserver: Observer<LocationData>;
 
     constructor() {
         console.log('Starting EventbusclientService constructor method');
@@ -31,8 +31,8 @@ export class EventBusClientService {
 
         // we need the "self" constant because we cannot use "this" inside the function below
         const self = this;
-        this.observableMessage = Observable.create(function(observer: Observer<LocationData>) {
-                self.messageObserver = observer;
+        this.observableLocationData = Observable.create(function(observer: Observer<LocationData>) {
+                self.locationDataObserver = observer;
                 });
     }
 
@@ -53,7 +53,7 @@ export class EventBusClientService {
                         const locationDataJson: LocationDataJson = JSON.parse(messageBody) as LocationDataJson;
                         const locationData: LocationData = new LocationData(locationDataJson);
 
-                        self.messageObserver.next(locationData);
+                        self.locationDataObserver.next(locationData);
                 });
          };
 
