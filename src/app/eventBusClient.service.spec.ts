@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { EventbusclientService } from './eventBusClient.service';
+import { EventBusClientService } from './eventBusClient.service';
 
 describe('EventbusclientService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [EventbusclientService]
+      providers: [EventBusClientService]
     });
   });
 
-  it('should be created', inject([EventbusclientService], (service: EventbusclientService) => {
+  it('should be created', inject([EventBusClientService], (service: EventBusClientService) => {
     expect(service).toBeTruthy();
   }));
 });

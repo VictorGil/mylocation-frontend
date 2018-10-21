@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {EventbusclientService} from '../eventBusClient.service';
+import {EventBusClientService} from '../eventBusClient.service';
 import { LocationData } from '../locationData';
 
 @Component({
@@ -11,7 +11,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     eventbusMessageReceived: String = 'no message yet';
 
     // it needs to be public because Angular only binds to public component properties.
-    constructor(public eventbusclientService: EventbusclientService) {
+    constructor(public eventbusclientService: EventBusClientService) {
         console.log('Constructor method of the MessagesComponent');
     }
 

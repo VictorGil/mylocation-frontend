@@ -8,7 +8,7 @@ import { LocationDataJson } from './locationDataJson';
     providedIn: 'root'
 })
 
-export class EventbusclientService {
+export class EventBusClientService {
     private readonly eventBus: EventBus;
     private readonly url: string;
     public readonly observableMessage: Observable<LocationData>;
