@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import * as EventBus from 'vertx3-eventbus-client';
 import { Observable, Observer } from 'rxjs';
 import { LocationData } from './locationdata';
+import { LocationDataJson } from './locationdatajson';
 
 @Injectable({
     providedIn: 'root'
@@ -49,11 +50,11 @@ export class EventbusclientService {
                         console.log('Type of "message.body" variable: ' + typeof(message.body)); // string
 
                         const messageBody: string = message.body as string;
-                        const locationData: LocationData = JSON.parse(messageBody) as LocationData;
+                        const locationDataJson: LocationDataJson = JSON.parse(messageBody) as LocationDataJson;
+                        const locationData: LocationData = new LocationData(locationDataJson);
 
                         self.messageObserver.next(locationData);
                 });
-
          };
 
         this.eventBus.enableReconnect(true);

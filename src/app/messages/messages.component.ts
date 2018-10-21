@@ -18,7 +18,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.eventbusclientService.setUpEventBusClient();
-        this.eventbusclientService.observableMessage.subscribe(locationData => this.eventbusMessageReceived = locationData.latitude);
+        this.eventbusclientService.observableMessage.subscribe(locationData => this.eventbusMessageReceived =
+                locationData.timeMesasuredString);
     }
 
     ngOnDestroy(): void {
