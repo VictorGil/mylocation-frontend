@@ -8,7 +8,8 @@ import { HeroesComponent } from './heroes/heroes.component';
 
 import { FormsModule } from '@angular/forms';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { MessagesComponent } from './messages/messages.component'; // <-- NgModel lives here
+import { MessagesComponent } from './messages/messages.component';
+import { LocationsComponent } from './locations/locations.component'; // <-- NgModel lives here
 
 // @NgModule.declarations array.
 @NgModule({
@@ -18,7 +19,8 @@ import { MessagesComponent } from './messages/messages.component'; // <-- NgMode
     // this is a custom component
     HeroesComponent,
     HeroDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    LocationsComponent
   ],
   imports: [
     BrowserModule,
