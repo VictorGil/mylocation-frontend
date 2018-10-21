@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {EventbusclientService} from '../eventbusclient.service';
-import { LocationData } from '../locationdata';
+import { LocationData } from '../locationData';
 
 @Component({
     selector: 'app-messages',
