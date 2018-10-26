@@ -9,7 +9,7 @@ import { LocationData } from '../locationData';
 })
 export class LocationsComponent implements OnInit, OnDestroy {
     readonly eventBusClientService: EventBusClientService;
-    locations: LocationData[] = new Array();
+    locations: LocationData[] = new Array<LocationData>();
     selectedLocation: LocationData;
 
     constructor(eventBusClientService: EventBusClientService) {
