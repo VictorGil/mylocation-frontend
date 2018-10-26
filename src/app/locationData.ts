@@ -13,6 +13,8 @@ export class LocationData {
     readonly timeMeasured: number;
     readonly timeMeasuredString: string;
 
+    readonly link: string;
+
     constructor(locationDataJson: LocationDataJson) {
         this.latitude = locationDataJson.latitude;
         this.longitude = locationDataJson.longitude;
@@ -30,6 +32,9 @@ export class LocationData {
         const timeMeasuredDate: Date = new Date(0);
         timeMeasuredDate.setUTCSeconds(this.timeMeasured);
         this.timeMeasuredString = timeMeasuredDate.toString();
+
+        this.link = 'https://maps.google.com/?q=' + this.latitude + ','
+                + this.longitude;
     }
 }
 
