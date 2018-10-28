@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-tour-of-heroes:serve"
+            "devServerTarget": "mylocation:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-tour-of-heroes:serve:production"
+              "devServerTarget": "mylocation:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "angular-tour-of-heroes"
+  "defaultProject": "mylocation"
 }
