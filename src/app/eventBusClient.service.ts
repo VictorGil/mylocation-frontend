@@ -3,6 +3,7 @@ import * as EventBus from 'vertx3-eventbus-client';
 import { Observable, Observer } from 'rxjs';
 import { LocationData } from './locationData';
 import { LocationDataJson } from './locationDataJson';
+import { environment } from '../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +18,7 @@ export class EventBusClientService {
     constructor() {
         console.log('Starting EventbusclientService constructor method');
 
-        this.url = 'https://localhost:8092/eventbusbridge';
+        this.url = environment.eventBusClientServiceUrl;
 
         const options = {
             vertxbus_reconnect_attempts_max: Infinity, // Max reconnect attempts
