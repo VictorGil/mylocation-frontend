@@ -1,4 +1,9 @@
 <h2>My latest locations</h2>
+
+<div *ngIf="locations.length == 0" >
+  No location data has been received yet.
+</div>
+
 <ul class="locations">
                                      <!-- click event binding -->
   <li *ngFor="let location of locations" (click)="onSelect(location)">
