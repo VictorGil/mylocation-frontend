@@ -17,8 +17,7 @@ export class EventBusClientService {
     constructor() {
         console.log('Starting EventbusclientService constructor method');
 
-        // this.url = 'http://192.168.0.101:8093/eventbusbridge';
-        this.url = 'http://localhost:8093/eventbusbridge';
+        this.url = 'https://localhost:8092/eventbusbridge';
 
         const options = {
             vertxbus_reconnect_attempts_max: Infinity, // Max reconnect attempts
