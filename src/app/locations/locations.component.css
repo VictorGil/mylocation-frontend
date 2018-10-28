@@ -7,7 +7,6 @@
     margin: 0 0 1em 0;
     list-style-type: none;
     padding: 0;
-    width: 11em;
   }
   .locations li {
     cursor: pointer;
@@ -17,7 +16,9 @@
     margin: .1em;
     padding: .1em;
     height: 2em;
+    width: 30em;
     border-radius: 4px;
+    white-space: nowrap;
   }
   .locations li.selected:hover {
     background-color: #BBD8DC !important;
@@ -44,6 +45,7 @@
     top: -1px;
     height: 1.8em;
     border-radius: 4px 0 0 4px;
+    white-space: nowrap;
   }
   
   
