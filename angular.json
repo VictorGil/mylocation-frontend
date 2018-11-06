@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-tour-of-heroes:build"
+            "browserTarget": "mylocation:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-tour-of-heroes:build:production"
+              "browserTarget": "mylocation:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-tour-of-heroes:build"
+            "browserTarget": "mylocation:build"
           }
         },
         "test": {
