@@ -18,6 +18,8 @@ export class LocationsComponent implements OnInit, OnDestroy {
 
     onSelect(selectedLocation: LocationData): void {
         this.selectedLocation = selectedLocation;
+        // just for testing
+        this.eventBusClientService.requestLatestKnownLocation();
     }
 
     ngOnInit(): void {

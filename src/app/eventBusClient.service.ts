@@ -45,8 +45,24 @@ export class EventBusClientService {
                 console.log('onopen function started');
                 self.eventBus.registerHandler('multicast', function(error, message) {
                         console.log('Received a message: ' + message);
+
                         console.log('Type of "error" variable: ' + typeof(error)); // object
+                        if (error == null) {
+                            console.log('"error" variable is null');
+                        } else {
+                            for (const property of Object.keys(error)) {
+                                console.log('The "' + property + '" property value of "error" object is: ' + error[property]);
+                            }
+                        }
+
                         console.log('Type of "message" variable: ' + typeof(message)); // object
+                        if (message == null) {
+                            console.log('The "message" variable is null');
+                        } else {
+                            for (const property of Object.keys(message)) {
+                                console.log('The "' + property + '" property value of "message" object is: ' + message[property]);
+                            }
+                        }
                         console.log('Type of "message.body" variable: ' + typeof(message.body)); // string
 
                         const messageBody: string = message.body as string;
@@ -69,5 +85,36 @@ export class EventBusClientService {
     public sendMessage() {
         this.eventBus.publish('multicast', {fruit: 'grape', color: 'yellow'});
     }
+
+    // TO DO
+    public requestLatestKnownLocation() {
+        const currentUnixTime = Date.now() / 1000;
+        this.eventBus.send('testAddress01', {timestamp: currentUnixTime}, function(error, message) {
+            if (error == null) {
+                console.log('The "error" variable is null');
+            } else {
+                for (const property of Object.keys(error)) {
+                    console.log('The ' + property + ' property value of "error" object is: ' + error[property]);
+                }
+            }
+
+            if (message == null) {
+                console.log('The "message" variable is null');
+            } else {
+                for (const property of Object.keys(message)) {
+                    console.log('The ' + property + ' property value of "message" object is: ' + message[property]);
+                }
+
+                console.log('Body of the message: ' + message.body);
+                if (message.body == null) {
+                    console.log('The "body" of the message is null');
+                } else {
+                    for (const property of Object.keys(message.body)) {
+                        console.log('The ' + property + ' property value of "body" object is: ' + message.body[property]);
+                    }
+                }
+            }
+        });
+     }
 }
 
