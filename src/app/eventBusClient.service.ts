@@ -63,10 +63,10 @@ export class EventBusClientService {
                                 console.log('The "' + property + '" property value of "message" object is: ' + message[property]);
                             }
                         }
-                        console.log('Type of "message.body" variable: ' + typeof(message.body)); // string
+                        console.log('Type of "message.body" variable: ' + typeof(message.body)); // object
+                        console.log('Received message: ' + JSON.stringify(message.body));
 
-                        const messageBody: string = message.body as string;
-                        const locationDataJson: LocationDataJson = JSON.parse(messageBody) as LocationDataJson;
+                        const locationDataJson: LocationDataJson = message.body as LocationDataJson;
                         const locationData: LocationData = new LocationData(locationDataJson);
 
                         self.locationDataObserver.next(locationData);
@@ -89,12 +89,12 @@ export class EventBusClientService {
     // TO DO
     public requestLatestKnownLocation() {
         const currentUnixTime = Date.now() / 1000;
-        this.eventBus.send('testAddress01', {timestamp: currentUnixTime}, function(error, message) {
+        this.eventBus.send('last_known_location_request_frontend', {timestamp: currentUnixTime}, function(error, message) {
             if (error == null) {
                 console.log('The "error" variable is null');
             } else {
                 for (const property of Object.keys(error)) {
-                    console.log('The ' + property + ' property value of "error" object is: ' + error[property]);
+                    console.log('The "' + property + '" property value of "error" object is: ' + error[property]);
                 }
             }
 
@@ -102,7 +102,7 @@ export class EventBusClientService {
                 console.log('The "message" variable is null');
             } else {
                 for (const property of Object.keys(message)) {
-                    console.log('The ' + property + ' property value of "message" object is: ' + message[property]);
+                    console.log('The "' + property + '" property value of "message" object is: ' + message[property]);
                 }
 
                 console.log('Body of the message: ' + message.body);
@@ -110,8 +110,10 @@ export class EventBusClientService {
                     console.log('The "body" of the message is null');
                 } else {
                     for (const property of Object.keys(message.body)) {
-                        console.log('The ' + property + ' property value of "body" object is: ' + message.body[property]);
+                        console.log('The "' + property + '" property value of "body" object is: ' + message.body[property]);
+                        console.log('Type of "' + property + '" property is: ' + typeof(property));
                     }
+                    console.log('The response received from the server:\n' + JSON.stringify(message.body));
                 }
             }
         });
