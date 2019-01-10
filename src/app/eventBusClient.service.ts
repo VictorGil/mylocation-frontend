@@ -12,8 +12,12 @@ import { environment } from '../environments/environment';
 export class EventBusClientService {
     private readonly eventBus: EventBus;
     private readonly url: string;
-    public readonly observableLocationData: Observable<LocationData>;
+
+    public readonly locationDataObservable: Observable<LocationData>;
     private locationDataObserver: Observer<LocationData>;
+
+    public readonly lastKnownLocationDataObservable: Observable<LocationData>;
+    private lastKnownLocationDataObserver: Observer<LocationData>;
 
     constructor() {
         console.log('Starting EventbusclientService constructor method');
@@ -31,8 +35,13 @@ export class EventBusClientService {
 
         // we need the "self" constant because we cannot use "this" inside the function below
         const self = this;
-        this.observableLocationData = Observable.create(function(observer: Observer<LocationData>) {
+
+        this.locationDataObservable = Observable.create(function(observer: Observer<LocationData>) {
                 self.locationDataObserver = observer;
+                });
+
+        this.lastKnownLocationDataObservable = Observable.create(function(observer: Observer<LocationData>) {
+                self.lastKnownLocationDataObserver = observer;
                 });
     }
 
@@ -71,7 +80,9 @@ export class EventBusClientService {
 
                         self.locationDataObserver.next(locationData);
                 });
-         };
+
+                self.requestLatestKnownLocation();
+        };
 
         this.eventBus.enableReconnect(true);
     }
@@ -81,13 +92,11 @@ export class EventBusClientService {
         console.log('Connection to the Vert.x event bus has been closed');
     }
 
-    // this method is just for testing
-    public sendMessage() {
-        this.eventBus.publish('multicast', {fruit: 'grape', color: 'yellow'});
-    }
+    private requestLatestKnownLocation() {
+        console.log('Going to request the latest saved location to the server.');
+        // we need the "self" constant because we cannot use "this" inside the function below
+        const self = this;
 
-    // TO DO
-    public requestLatestKnownLocation() {
         const currentUnixTime = Date.now() / 1000;
         this.eventBus.send('last_known_location_request_frontend', {timestamp: currentUnixTime}, function(error, message) {
             if (error == null) {
@@ -114,6 +123,9 @@ export class EventBusClientService {
                         console.log('Type of "' + property + '" property is: ' + typeof(property));
                     }
                     console.log('The response received from the server:\n' + JSON.stringify(message.body));
+                    const lastKnownLocationDataJson: LocationDataJson = message.body as LocationDataJson;
+                    const lastKnownLocationData: LocationData = new LocationData(lastKnownLocationDataJson);
+                    self.lastKnownLocationDataObserver.next(lastKnownLocationData);
                 }
             }
         });

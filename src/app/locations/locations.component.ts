@@ -12,20 +12,25 @@ export class LocationsComponent implements OnInit, OnDestroy {
     locations: LocationData[] = new Array<LocationData>();
     selectedLocation: LocationData;
 
+    lastKnownLocation: LocationData;
+
     constructor(eventBusClientService: EventBusClientService) {
         this.eventBusClientService = eventBusClientService;
     }
 
     onSelect(selectedLocation: LocationData): void {
         this.selectedLocation = selectedLocation;
-        // just for testing
-        this.eventBusClientService.requestLatestKnownLocation();
     }
 
     ngOnInit(): void {
         this.eventBusClientService.setUpEventBusClient();
-        this.eventBusClientService.observableLocationData.subscribe(
+
+        this.eventBusClientService.locationDataObservable.subscribe(
             locationData => this.locations.push(locationData));
+
+        this.eventBusClientService.lastKnownLocationDataObservable.subscribe(
+            lastKnownLocation => this.lastKnownLocation = lastKnownLocation);
+
         this.forceLocationsRefresh();
     }
 
